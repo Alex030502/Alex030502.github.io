@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://alex030502.github.io</id>
+    <title>Wased&apos;blog</title>
+    <updated>2020-11-29T13:17:09.426Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://alex030502.github.io"/>
+    <link rel="self" href="https://alex030502.github.io/atom.xml"/>
+    <subtitle>I AK NOIP</subtitle>
+    <logo>https://alex030502.github.io/images/avatar.png</logo>
+    <icon>https://alex030502.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2020, Wased&apos;blog</rights>
+    <entry>
+        <title type="html"><![CDATA[图]]></title>
+        <id>https://alex030502.github.io/post/图/</id>
+        <link href="https://alex030502.github.io/post/图/">
+        </link>
+        <updated>2020-11-29T12:33:56.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="图">图</h1>
+<p>G(V,E) 其中V表示点数，E表示表数</p>
+<h2 id="无向图">无向图</h2>
+<pre><code>图的边没有方向，可以双向
+</code></pre>
+<h2 id="有向图">有向图</h2>
+<pre><code>图的边有方向，只能按方向从一点到另一点
+</code></pre>
+<h2 id="完全图">完全图</h2>
+<pre><code>一个n阶的完全无向图含有n*（n-1)/2条边；
+一个n阶的完全有向图含有n*（n-1）条边
+</code></pre>
+<h2 id="稠密图">稠密图</h2>
+<pre><code>一个边数接近完全图的图
+</code></pre>
+<h2 id="稀疏图">稀疏图</h2>
+<pre><code>一个边数远远少于完全图的图
+</code></pre>
+<h4 id="节点的度">节点的度</h4>
+<pre><code>无向图中与结点相连的边的数目，称为结点的度
+</code></pre>
+<h4 id="结点的入度">结点的入度</h4>
+<pre><code>在有向图中，以这个结点为终点的有向边的数目
+</code></pre>
+<h4 id="结点的出度">结点的出度</h4>
+<pre><code>在有向图中，以这个结点为起点的又向边的数目
+</code></pre>
+<h4 id="权值">权值</h4>
+<pre><code>边的“费用”或&quot;价值&quot; 可以理解为边的长度
+</code></pre>
+<h4 id="连通">连通</h4>
+<pre><code>如果图中结点U，V之间存在一条从U通过若干条边，点到达V的通路，则称U，V是连通的
+</code></pre>
+<h4 id="回路">回路</h4>
+<pre><code>起点与终点相同的路径，称为回路或环
+</code></pre>
+<h4 id="强连通分量">强连通分量</h4>
+<pre><code>有向图中任意两点都连通的最大子图。特殊地，单个点也算一个强连通分量。
+</code></pre>
+<h1 id="图的存储">图的存储</h1>
+<h2 id="邻接矩阵太浪费空间及时间">邻接矩阵（太浪费空间及时间）</h2>
+<p>采用二维数组实现 如：int g[101][101]<br>
+g[i][j]的值，表示从点vi到点vj中的边的权值<br>
+ps：int类型最大0x7fffffff(16进制)<br>
+存储稠密图时空间以及算力利用率要高一点</p>
+<p>CODE:</p>
+<pre><code class="language-cpp">   int g[N][N];
+   void creae(int g[][]){
+       int n,e,i,j;
+       cin&gt;&gt;n&gt;&gt;e;
+       for(int k=1;k&lt;=e;k++){
+           cin&gt;&gt;i&gt;&gt;j;  //读入边
+           g[i][j]=1;  //赋值，若为无向图还要个给
+                       //g[j][i]赋值
+       }
+   }
+</code></pre>
+<h2 id="邻接表比邻接矩阵更节省时间">邻接表（比邻接矩阵更节省时间）</h2>
+<p>PS:若用stl中的vector还可以节省空间！！！</p>
+<p>见代码及注释</p>
+<p>code：</p>
+<pre><code class="language-cpp">   //a[i][j]表示和结点i相邻的第j个结点
+   int a[N][N];
+   cin&gt;&gt;n&gt;&gt;e;
+   for(int  k=1;k&lt;=e;k++){
+       cin&gt;&gt;i&gt;&gt;j;
+       //a[i][0]记录与顶点i邻接的点的个数
+       a[i][++a[i][0]]=j;
+       a[j][++a[j][0]]=i;//存无向图时有这句,对称保存
+   }
+</code></pre>
+<h2 id="边邻接表">边邻接表</h2>
+<p>采用多个整形数组实现</p>
+<p>CODE:<br>
+存储完全图时 M=N*(N-1);</p>
+<pre><code class="language-cpp">int first[N];/first[i]表示以i为起点的最大边号
+int next[M];//next[k]表示和边K共起点的上一条边
+int go[M];//go[k]表示边k的终点
+int tot=0;
+for(int k=1;k&lt;=e;k++){
+    cin&gt;&gt;i&gt;&gt;j&gt;&gt;w;
+    next[++tot]=first[i];
+    first[i]=tot;   //更新i的数量
+    go[tot]=j;//存边(i,j)
+    next[++tot]=first[j];
+    first[j]=tot;
+    go[tot]=i;//存储边(j,i)
+}
+</code></pre>
+<h1 id="图的遍历">图的遍历</h1>
+<h2 id="深度优先遍历dfs">深度优先遍历（dfs）</h2>
+<pre><code>以某个点作为起点，先将该点标记为已访问，然后递归访问所有与之相连且未被访问过的点。
+</code></pre>
+<p>CODE:</p>
+<pre><code class="language-cpp">    #include&lt;iostream&gt;
+    using namespace std;
+    const int N=20;
+    bool v[N];
+    int n,m,x,y;
+    bool g[N][N];
+    void dfs(int st,bool v[]){
+        cout&lt;&lt;st;
+        v[st]=1;
+        for(int i=1;i&lt;=n;i++){
+            if(!v[i]&amp;&amp;g[st][i]==1) {
+                cout&lt;&lt;&quot;-&gt;&quot;;
+                dfs(i,v);
+            }
+        }
+    }
+    int main(){
+        cin&gt;&gt;n&gt;&gt;m;
+        for(int i=1;i&lt;=m;i++){
+            cin&gt;&gt;x&gt;&gt;y;
+            g[x][y]=1;
+            g[y][x]=1;
+        }
+        dfs(1,v);
+
+        return 0;
+   }
+
+</code></pre>
+<h2 id="广度优先遍历bfs">广度优先遍历（bfs）</h2>
+<pre><code class="language-cpp">    #include&lt;iostream&gt;
+    using namespace std;
+    const int N=20;
+    bool v[N];
+    int n,m,x,y;
+    bool g[N][N];
+    void dfs(int st,bool v[]){
+        cout&lt;&lt;st;
+        v[st]=1;
+        for(int i=1;i&lt;=n;i++){
+            if(!v[i]&amp;&amp;g[st][i]==1) {
+                cout&lt;&lt;&quot;-&gt;&quot;;
+                dfs(i,v);
+            }
+            
+        }
+    }
+    void bfs(int st,bool v[]){
+
+    }
+    int main(){
+        cin&gt;&gt;n&gt;&gt;m;
+        for(int i=1;i&lt;=m;i++){
+            cin&gt;&gt;x&gt;&gt;y;
+            g[x][y]=1;
+            g[y][x]=1;
+        }
+        dfs(1,v);
+
+        return 0;
+   }
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea]]></title>
+        <id>https://alex030502.github.io/post/hello-gridea/</id>
+        <link href="https://alex030502.github.io/post/hello-gridea/">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="https://gridea.dev/">Gridea 主页</a><br>
+<a href="http://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+</feed>
