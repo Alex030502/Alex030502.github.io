@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | Wased&#39;blog</title>
+<title>最小生成树算法Prim&amp;Kruskal | Wased&#39;blog</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -24,15 +24,12 @@
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
-    <meta name="keywords" content="" />
+    <meta name="description" content="Prim&amp;Kruskal
+Prim:以任意一条边作为起点找出他联通的最小边，再以起连通的最小边的另一断点作为起点重复以上操作并判断是否访问过该边，访问过就跳过，直至遍历n个点
+思想：类似dijiskar
+适用于稠密图；
+kruska..." />
+    <meta name="keywords" content="算法" />
   </head>
   <body>
     <div id="app" class="main">
@@ -103,20 +100,80 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">最小生成树算法Prim&amp;Kruskal</h2>
+            <div class="post-date">2020-11-29</div>
             
             <div class="post-content" v-pre>
-              <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+              <p>Prim&amp;Kruskal<br>
+Prim:以任意一条边作为起点找出他联通的最小边，再以起连通的最小边的另一断点作为起点重复以上操作并判断是否访问过该边，访问过就跳过，直至遍历n个点</p>
+<p>思想：类似dijiskar</p>
+<p>适用于稠密图；</p>
+<p>kruskal：以所有边中的最小边作为起点，用并查集进行辅助，不断录入最小边，并将该边的两个节点入集合，使用过的进行标记，防止重复访问</p>
+<p>思想：算是贪心吧。。<br>
+代码见P2820 局域网<br>
+适用于稀疏图（边少）</p>
+<p>Prim's CODE：</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int n,m;
+const int MAX=100001;
+int map[MAX][MAX];
+bool b[1001];
+int minn=MAX;
+inline int read(){
+	char c=getchar();
+	int f=1;
+	int x=0;
+	while(c&lt;'0'||c&gt;'9'){
+		if(c=='-') f=-1;
+		c=getchar();
+	}
+	while(c&lt;='9'&amp;&amp;c&gt;='0'){
+		x=x*10+c-'0';
+		c=getchar();
+	}
+	return x*f;
+}
+int main(){
+	n=read();
+	m=read();
+	int t,t1,t2;
+	for(int i=1;i&lt;=n;i++){
+		for(int j=1;j&lt;=n;j++){
+			if(i==j) continue;
+			map[i][j]=MAX;
+		}
+	}
+	b[1]=1;
+	for(int i=1;i&lt;=m;i++){
+		
+	}
+	prim(1);
+	
+	return 0;
+}
+</code></pre>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow></mrow><annotation encoding="application/x-tex"></annotation></semantics></math></span><span class="katex-html" aria-hidden="true"></span></span></span></p>
 
             </div>
             
+              <div class="tag-container">
+                
+                  <a href="https://alex030502.github.io/tag/p1U_6Txg1/" class="tag">
+                    算法
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://alex030502.github.io/post/dui/">
+                  <h3 class="post-title">
+                    堆
+                  </h3>
+                </a>
+              </div>
             
 
             

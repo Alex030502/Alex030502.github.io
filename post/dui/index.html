@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | Wased&#39;blog</title>
+<title>堆 | Wased&#39;blog</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -24,14 +24,9 @@
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
+    <meta name="description" content="#堆(在完全二叉树上维护具有可重复贡献性的数据结构)
+本质是依靠完全二叉树进行实现（及满足左子节点编号为父节点编号2，右子节点为父节点编号2+1
+1.大根堆: 对于任意的父节点的值一定大于等于其子节点————&gt;任意节点一定是以它为根建..." />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -103,20 +98,103 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">堆</h2>
+            <div class="post-date">2020-11-29</div>
             
             <div class="post-content" v-pre>
-              <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+              <h1 id="堆在完全二叉树上维护具有可重复贡献性的数据结构">#堆(在完全二叉树上维护具有可重复贡献性的数据结构)</h1>
+<p>本质是依靠完全二叉树进行实现（及满足左子节点编号为父节点编号<em>2，右子节点为父节点编号</em>2+1</p>
+<p>1.大根堆: 对于任意的父节点的值一定大于等于其子节点————&gt;任意节点一定是以它为根建立的树的最大值</p>
+<p>2.小根堆: 对于任意的父节点的值一定小于等于其子节点————&gt;任意节点一定是以它为根建立的树的最小值</p>
+<p>que：（堆可做区间查询最值）</p>
+<p>sol：堆没有进行维护堆中左右</p>
+<p>操作:</p>
+<p>1.put 向堆中加入元素</p>
+<pre><code>1. 在堆尾加入一个元素并以这个结点为当前结点
+
+2.比较当前结点和它父结点的大小，如果当前节点值小、大于父节点，则进行交换并把当前节点置为当前结点。重复执行2；
+
+3，直到不满足结束
+</code></pre>
+<p>2.get 从堆中取出并删除根结点元素<br>
+1.把堆中最后一个元素（及下标为len（堆中元素个数）的与父节点交换，个数-1<br>
+2.把根节点置为当前父节点pa<br>
+3.如果pa无孩子，则进行5，否则把pa的左右孩子中最小的哪一个置为当前子节点son<br>
+4。比较pa与son的值，如果fa的值小于等于son，则转5，否则，把pa指向son转3<br>
+5.结束</p>
+<p>CODE:</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+int heap[10001];
+int len=0;
+int t;
+
+void put(int t1){
+	heap[++len]=t;
+	int son=len;
+	int fa=son&gt;&gt;1;
+	while(son&gt;1){
+		fa=son&gt;&gt;1;
+		if(heap[fa]&gt;heap[son]){
+			heap[0]=heap[son];
+			heap[son]=heap[fa];
+			heap[fa]=heap[0];
+			son=son&gt;&gt;1;
+		}
+		else return; 
+	}	
+}
+void get(){
+	heap[0]=heap[len];
+	heap[len]=heap[1];
+	heap[1]=heap[0];
+	len--;
+	int pa=1,son=pa&lt;&lt;1;
+	int tmp1,tmp2;
+	while(son&lt;=len){
+		if(son==len) son=pa&lt;&lt;1;
+		tmp1=heap[son];
+		tmp2=heap[son+1];
+		if(tmp1&gt;tmp2){
+			son=son+1;
+		}
+		if(heap[pa]&gt;heap[son]){
+			heap[0]=heap[son];
+			heap[son]=heap[pa];
+			heap[pa]=heap[0]; 
+			pa=son;
+			son=pa&lt;&lt;1; 
+		} 
+		else return;
+	}
+}
+int main(){
+	int n;
+	cin&gt;&gt;n;
+	for(int i=1;i&lt;=n;i++){
+		cin&gt;&gt;t;
+		put(t);
+	}
+	for(int i=1;i&lt;=n;i++){
+		cout&lt;&lt;heap[1]&lt;&lt;&quot; &quot;;
+		get();
+	}
+	return 0;
+}
+'''
+</code></pre>
 
             </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://alex030502.github.io/post/图/">
+                  <h3 class="post-title">
+                    图
+                  </h3>
+                </a>
+              </div>
             
 
             
