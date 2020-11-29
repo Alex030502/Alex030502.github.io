@@ -1,13 +1,26 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>图 | Wased&#39;blog</title>
-<link rel="shortcut icon" href="https://alex030502.github.io/favicon.ico?v=1606655826637">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://alex030502.github.io/favicon.ico?v=1606655863693">
 <link rel="stylesheet" href="https://alex030502.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="图 | Wased&#39;blog - Atom Feed" href="https://alex030502.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
 
@@ -25,94 +38,81 @@ G(V,E) 其中V表示点数，E表示表数
 
 稠密..." />
     <meta name="keywords" content="数据结构" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://alex030502.github.io">
-  <img class="avatar" src="https://alex030502.github.io/images/avatar.png?v=1606655826637" alt="">
-  </a>
-  <h1 class="site-title">
-    Wased&#39;blog
-  </h1>
-  <p class="site-description">
-    I AK NOIP
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://alex030502.github.io">
+        <img src="https://alex030502.github.io/images/avatar.png?v=1606655863693" class="site-logo">
+        <h1 class="site-title">Wased&#39;blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
   </div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-        <a href="https://github.com/Alex030502" target="_blank">
-          <i class="ri-github-line"></i>
-        </a>
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-        <a href="https://www.zhihu.com/people/wased-72" target="_blank">
-          <i class="ri-zhihu-line"></i>
-        </a>
+        
       
-    
-      
-    
+    </div>
+    <div class="site-description">
+      I AK NOIP
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://alex030502.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
   </div>
 </div>
 
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              图
-            </h2>
-            <div class="post-info">
-              <span>
-                2020-11-29
-              </span>
-              <span>
-                5 min read
-              </span>
-              
-                <a href="https://alex030502.github.io/tag/YctUrmBVR/" class="post-tag">
-                  # 数据结构
-                </a>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">图</h2>
+            <div class="post-date">2020-11-29</div>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <h1 id="图">图</h1>
+            <div class="post-content" v-pre>
+              <h1 id="图">图</h1>
 <p>G(V,E) 其中V表示点数，E表示表数</p>
 <h2 id="无向图">无向图</h2>
 <pre><code>图的边没有方向，可以双向
@@ -269,137 +269,82 @@ for(int k=1;k&lt;=e;k++){
    }
 </code></pre>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li><a href="#%E5%9B%BE">图</a>
-<ul>
-<li><a href="#%E6%97%A0%E5%90%91%E5%9B%BE">无向图</a></li>
-<li><a href="#%E6%9C%89%E5%90%91%E5%9B%BE">有向图</a></li>
-<li><a href="#%E5%AE%8C%E5%85%A8%E5%9B%BE">完全图</a></li>
-<li><a href="#%E7%A8%A0%E5%AF%86%E5%9B%BE">稠密图</a></li>
-<li><a href="#%E7%A8%80%E7%96%8F%E5%9B%BE">稀疏图</a><br>
-*
-<ul>
-<li><a href="#%E8%8A%82%E7%82%B9%E7%9A%84%E5%BA%A6">节点的度</a></li>
-<li><a href="#%E7%BB%93%E7%82%B9%E7%9A%84%E5%85%A5%E5%BA%A6">结点的入度</a></li>
-<li><a href="#%E7%BB%93%E7%82%B9%E7%9A%84%E5%87%BA%E5%BA%A6">结点的出度</a></li>
-<li><a href="#%E6%9D%83%E5%80%BC">权值</a></li>
-<li><a href="#%E8%BF%9E%E9%80%9A">连通</a></li>
-<li><a href="#%E5%9B%9E%E8%B7%AF">回路</a></li>
-<li><a href="#%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F">强连通分量</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E5%9B%BE%E7%9A%84%E5%AD%98%E5%82%A8">图的存储</a>
-<ul>
-<li><a href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E5%A4%AA%E6%B5%AA%E8%B4%B9%E7%A9%BA%E9%97%B4%E5%8F%8A%E6%97%B6%E9%97%B4">邻接矩阵（太浪费空间及时间）</a></li>
-<li><a href="#%E9%82%BB%E6%8E%A5%E8%A1%A8%E6%AF%94%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E6%9B%B4%E8%8A%82%E7%9C%81%E6%97%B6%E9%97%B4">邻接表（比邻接矩阵更节省时间）</a></li>
-<li><a href="#%E8%BE%B9%E9%82%BB%E6%8E%A5%E8%A1%A8">边邻接表</a></li>
-</ul>
-</li>
-<li><a href="#%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86">图的遍历</a>
-<ul>
-<li><a href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86dfs">深度优先遍历（dfs）</a></li>
-<li><a href="#%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86bfs">广度优先遍历（bfs）</a></li>
-</ul>
-</li>
-</ul>
-
-              </div>
             </div>
-          </article>
-        </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://alex030502.github.io/tag/YctUrmBVR/" class="tag">
+                    数据结构
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://alex030502.github.io/post/hello-gridea/">
+                  <h3 class="post-title">
+                    Hello Gridea
+                  </h3>
+                </a>
+              </div>
+            
 
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://alex030502.github.io/post/hello-gridea/">
-              <h3 class="post-title">
-                Hello Gridea
-              </h3>
-            </a>
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
           </div>
-        
 
-        
-          
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-<div id="gitalk-container"></div>
-
-<script>
-
-  var gitalk = new Gitalk({
-    clientID: '',
-    clientSecret: '',
-    repo: '',
-    owner: '',
-    admin: [''],
-    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-
-  gitalk.render('gitalk-container')
-
-</script>
-
-          
-
-          
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://alex030502.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
+        </div>
       </div>
     </div>
 
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
     <script>
-      hljs.initHighlightingOnLoad()
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
-
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
-
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
+      gitalk.render('gitalk-container')
 
     </script>
+  
+
+  
+
+
+
+
   </body>
 </html>
