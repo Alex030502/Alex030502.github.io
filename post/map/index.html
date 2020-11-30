@@ -1,15 +1,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
+    <meta name="description" content="图
+G(V,E) 其中V表示点数，E表示表数
+无向图
+图的边没有方向，可以双向
 
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
-    <meta name="keywords" content="" />
+有向图
+图的边有方向，只能按方向从一点到另一点
+
+完全图
+一个n阶的完全无向图含有n*（n-1)/2条边；
+一个n阶的完全有向图含有n*（n-1）条边
+
+稠密..." />
+    <meta name="keywords" content="数据结构" />
     <link rel="stylesheet" href="http://localhost:4000/media/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://localhost:4000/styles/main.css">
     
@@ -480,18 +485,22 @@
                 
             </div>
             <div class="postinfo-detail">
-                <div class="postdate"><i class="fa fa-calendar"></i>2019-01-25</div>
-            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>
+                <div class="postdate"><i class="fa fa-calendar"></i>2020-11-29</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 5 min read</div>
             <div class="posttag">
+                
+                <a href="http://localhost:4000/tag/YctUrmBVR/" class="postlink">
+                    <i class="fa fa-tag"></i> 数据结构
+                </a>
                 
             </div>
         </div>
         
         <div id="articlecontent">
             <div id="texttitle" style="text-align: center">
-                <h2>关于</h2>
+                <h2>图</h2>
                 <!-- id 将作为查询条件 -->
-                <div id="pl" style="display:none">http://localhost:4000/post/about/</div>
+                <div id="pl" style="display:none">http://localhost:4000/post/map/</div>
                 <div id="rootaddr" style="display:none">http://localhost:4000</div>
                 <span id="hotnum">
                     <h4><i class="fa fa-eye" aria-hidden="true" style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
@@ -499,13 +508,162 @@
                 </span>
             </div>
             <div class="text ">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+                <h1 id="图">图</h1>
+<p>G(V,E) 其中V表示点数，E表示表数</p>
+<h2 id="无向图">无向图</h2>
+<pre><code>图的边没有方向，可以双向
+</code></pre>
+<h2 id="有向图">有向图</h2>
+<pre><code>图的边有方向，只能按方向从一点到另一点
+</code></pre>
+<h2 id="完全图">完全图</h2>
+<pre><code>一个n阶的完全无向图含有n*（n-1)/2条边；
+一个n阶的完全有向图含有n*（n-1）条边
+</code></pre>
+<h2 id="稠密图">稠密图</h2>
+<pre><code>一个边数接近完全图的图
+</code></pre>
+<h2 id="稀疏图">稀疏图</h2>
+<pre><code>一个边数远远少于完全图的图
+</code></pre>
+<h4 id="节点的度">节点的度</h4>
+<pre><code>无向图中与结点相连的边的数目，称为结点的度
+</code></pre>
+<h4 id="结点的入度">结点的入度</h4>
+<pre><code>在有向图中，以这个结点为终点的有向边的数目
+</code></pre>
+<h4 id="结点的出度">结点的出度</h4>
+<pre><code>在有向图中，以这个结点为起点的又向边的数目
+</code></pre>
+<h4 id="权值">权值</h4>
+<pre><code>边的“费用”或&quot;价值&quot; 可以理解为边的长度
+</code></pre>
+<h4 id="连通">连通</h4>
+<pre><code>如果图中结点U，V之间存在一条从U通过若干条边，点到达V的通路，则称U，V是连通的
+</code></pre>
+<h4 id="回路">回路</h4>
+<pre><code>起点与终点相同的路径，称为回路或环
+</code></pre>
+<h4 id="强连通分量">强连通分量</h4>
+<pre><code>有向图中任意两点都连通的最大子图。特殊地，单个点也算一个强连通分量。
+</code></pre>
+<h1 id="图的存储">图的存储</h1>
+<h2 id="邻接矩阵太浪费空间及时间">邻接矩阵（太浪费空间及时间）</h2>
+<p>采用二维数组实现 如：int g[101][101]<br>
+g[i][j]的值，表示从点vi到点vj中的边的权值<br>
+ps：int类型最大0x7fffffff(16进制)<br>
+存储稠密图时空间以及算力利用率要高一点</p>
+<p>CODE:</p>
+<pre><code class="language-cpp">   int g[N][N];
+   void creae(int g[][]){
+       int n,e,i,j;
+       cin&gt;&gt;n&gt;&gt;e;
+       for(int k=1;k&lt;=e;k++){
+           cin&gt;&gt;i&gt;&gt;j;  //读入边
+           g[i][j]=1;  //赋值，若为无向图还要个给
+                       //g[j][i]赋值
+       }
+   }
+</code></pre>
+<h2 id="邻接表比邻接矩阵更节省时间">邻接表（比邻接矩阵更节省时间）</h2>
+<p>PS:若用stl中的vector还可以节省空间！！！</p>
+<p>见代码及注释</p>
+<p>code：</p>
+<pre><code class="language-cpp">   //a[i][j]表示和结点i相邻的第j个结点
+   int a[N][N];
+   cin&gt;&gt;n&gt;&gt;e;
+   for(int  k=1;k&lt;=e;k++){
+       cin&gt;&gt;i&gt;&gt;j;
+       //a[i][0]记录与顶点i邻接的点的个数
+       a[i][++a[i][0]]=j;
+       a[j][++a[j][0]]=i;//存无向图时有这句,对称保存
+   }
+</code></pre>
+<h2 id="边邻接表">边邻接表</h2>
+<p>采用多个整形数组实现</p>
+<p>CODE:<br>
+存储完全图时 M=N*(N-1);</p>
+<pre><code class="language-cpp">int first[N];/first[i]表示以i为起点的最大边号
+int next[M];//next[k]表示和边K共起点的上一条边
+int go[M];//go[k]表示边k的终点
+int tot=0;
+for(int k=1;k&lt;=e;k++){
+    cin&gt;&gt;i&gt;&gt;j&gt;&gt;w;
+    next[++tot]=first[i];
+    first[i]=tot;   //更新i的数量
+    go[tot]=j;//存边(i,j)
+    next[++tot]=first[j];
+    first[j]=tot;
+    go[tot]=i;//存储边(j,i)
+}
+</code></pre>
+<h1 id="图的遍历">图的遍历</h1>
+<h2 id="深度优先遍历dfs">深度优先遍历（dfs）</h2>
+<pre><code>以某个点作为起点，先将该点标记为已访问，然后递归访问所有与之相连且未被访问过的点。
+</code></pre>
+<p>CODE:</p>
+<pre><code class="language-cpp">    #include&lt;iostream&gt;
+    using namespace std;
+    const int N=20;
+    bool v[N];
+    int n,m,x,y;
+    bool g[N][N];
+    void dfs(int st,bool v[]){
+        cout&lt;&lt;st;
+        v[st]=1;
+        for(int i=1;i&lt;=n;i++){
+            if(!v[i]&amp;&amp;g[st][i]==1) {
+                cout&lt;&lt;&quot;-&gt;&quot;;
+                dfs(i,v);
+            }
+        }
+    }
+    int main(){
+        cin&gt;&gt;n&gt;&gt;m;
+        for(int i=1;i&lt;=m;i++){
+            cin&gt;&gt;x&gt;&gt;y;
+            g[x][y]=1;
+            g[y][x]=1;
+        }
+        dfs(1,v);
+
+        return 0;
+   }
+
+</code></pre>
+<h2 id="广度优先遍历bfs">广度优先遍历（bfs）</h2>
+<pre><code class="language-cpp">    #include&lt;iostream&gt;
+    using namespace std;
+    const int N=20;
+    bool v[N];
+    int n,m,x,y;
+    bool g[N][N];
+    void dfs(int st,bool v[]){
+        cout&lt;&lt;st;
+        v[st]=1;
+        for(int i=1;i&lt;=n;i++){
+            if(!v[i]&amp;&amp;g[st][i]==1) {
+                cout&lt;&lt;&quot;-&gt;&quot;;
+                dfs(i,v);
+            }
+            
+        }
+    }
+    void bfs(int st,bool v[]){
+
+    }
+    int main(){
+        cin&gt;&gt;n&gt;&gt;m;
+        for(int i=1;i&lt;=m;i++){
+            cin&gt;&gt;x&gt;&gt;y;
+            g[x][y]=1;
+            g[y][x]=1;
+        }
+        dfs(1,v);
+
+        return 0;
+   }
+</code></pre>
 
             </div>
             <hr style="width: 80%;">
@@ -543,13 +701,39 @@
             <div class="postfooter">
                 <ul class="post-copyright">
                     <li><strong>文章作者：</strong></li>
-            <li><strong>原文链接：</strong>http://localhost:4000/post/about/</li>
+            <li><strong>原文链接：</strong>http://localhost:4000/post/map/</li>
             <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
                 许可协议。转载请注明出处！</li>
             </ul>
         </div>
         <div id="otherpost">
             
+            <div class="prev-post-pc">
+                <div id="ppcontainer" onclick="window.location.href= 'http://localhost:4000/post/dui/';return false">
+                    
+                    
+                    <img src="" style="width: 100%;" class="opimg">
+                    
+                    
+                    <h4 class="optitle">堆</h4>
+                </div>
+            </div>
+            <div class="prev-post">
+                上一篇 <a href="http://localhost:4000/post/dui/">堆</a>
+            </div>
+            
+            
+            <div class="next-post-pc">
+                <div id="npcontainer" onclick="window.location.href= 'http://localhost:4000/post/hello-gridea/';return false">
+                    
+                    <img src="http://localhost:4000/post-images/hello-gridea.png" style="width: 100%;" class="opimg">
+                    
+                    <h4 class="optitle">Hello Gridea</h4>
+                </div>
+            </div>
+            <div class="next-post">
+                下一篇 <a href="http://localhost:4000/post/hello-gridea/">Hello Gridea</a>
+            </div>
             
         </div>
     </div>
@@ -667,12 +851,37 @@
         
         <div class="toc-container">
             <ul class="markdownIt-TOC">
-<li>
+<li><a href="#%E5%9B%BE">图</a>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li><a href="#%E6%97%A0%E5%90%91%E5%9B%BE">无向图</a></li>
+<li><a href="#%E6%9C%89%E5%90%91%E5%9B%BE">有向图</a></li>
+<li><a href="#%E5%AE%8C%E5%85%A8%E5%9B%BE">完全图</a></li>
+<li><a href="#%E7%A8%A0%E5%AF%86%E5%9B%BE">稠密图</a></li>
+<li><a href="#%E7%A8%80%E7%96%8F%E5%9B%BE">稀疏图</a><br>
+*
+<ul>
+<li><a href="#%E8%8A%82%E7%82%B9%E7%9A%84%E5%BA%A6">节点的度</a></li>
+<li><a href="#%E7%BB%93%E7%82%B9%E7%9A%84%E5%85%A5%E5%BA%A6">结点的入度</a></li>
+<li><a href="#%E7%BB%93%E7%82%B9%E7%9A%84%E5%87%BA%E5%BA%A6">结点的出度</a></li>
+<li><a href="#%E6%9D%83%E5%80%BC">权值</a></li>
+<li><a href="#%E8%BF%9E%E9%80%9A">连通</a></li>
+<li><a href="#%E5%9B%9E%E8%B7%AF">回路</a></li>
+<li><a href="#%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F">强连通分量</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%9B%BE%E7%9A%84%E5%AD%98%E5%82%A8">图的存储</a>
+<ul>
+<li><a href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E5%A4%AA%E6%B5%AA%E8%B4%B9%E7%A9%BA%E9%97%B4%E5%8F%8A%E6%97%B6%E9%97%B4">邻接矩阵（太浪费空间及时间）</a></li>
+<li><a href="#%E9%82%BB%E6%8E%A5%E8%A1%A8%E6%AF%94%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E6%9B%B4%E8%8A%82%E7%9C%81%E6%97%B6%E9%97%B4">邻接表（比邻接矩阵更节省时间）</a></li>
+<li><a href="#%E8%BE%B9%E9%82%BB%E6%8E%A5%E8%A1%A8">边邻接表</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86">图的遍历</a>
+<ul>
+<li><a href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86dfs">深度优先遍历（dfs）</a></li>
+<li><a href="#%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86bfs">广度优先遍历（bfs）</a></li>
 </ul>
 </li>
 </ul>
@@ -914,7 +1123,7 @@
                 var nc = new NewCounter();
                 nc.save({
                     time: 1,
-                    title: "关于",
+                    title: "图",
                     url: pl,
                     xid: pl,
                 }).then(function (object) {
